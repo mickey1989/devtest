@@ -1,28 +1,24 @@
-class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy]
-
-  # GET /locations/
-  # GET /locations.json
-  def index
-    @locations = Location.all
-    render json: @locations
-  end
+class LocationsController < BaseController
+  before_filter :authenticate_user!
 
   # GET /locations/1
   # GET /locations/1.json
   def show
+    get_locations
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_location
-    @country = Country.where(country_code: params[:id]).first
-    if @country
-      @locations = []
-      @country.location_groups.each do |location_group|
-        @locations.concat location_group.locations
+  def get_locations
+    country_code = params[:id]
+    country = Country.where(country_code: country_code).first
+    if country
+      locations = []
+      country.location_groups.each do |location_group|
+        locations.concat location_group.locations
       end
-      render json: @locations
+      return render json: locations
+    else
+      return not_found!
     end
   end
 

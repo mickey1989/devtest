@@ -81,6 +81,7 @@ GEM
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
     rack (1.6.8)
+    rack-cors (1.0.2)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.0)
@@ -163,6 +164,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mysql2 (~> 0.3.18)
+  rack-cors
   rails (= 4.2.0)
   rails-api
   sass-rails (~> 5.0)
