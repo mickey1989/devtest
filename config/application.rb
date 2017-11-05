@@ -25,9 +25,9 @@ module Devtest
     config.active_record.raise_in_transactional_callbacks = true
 
     config.middleware.insert_before 0, "Rack::Cors" do
-      #allow do
-        #origins 'localhost:3000', '127.0.0.1:3000',
-        #resource '*', :headers => :any, :methods => :get
+      allow do
+        origins 'localhost:3000', '127.0.0.1:3000',
+        resource 'evaluate_target', :headers => :any, :methods => :post
       #end
       allow do
         origins '*'
